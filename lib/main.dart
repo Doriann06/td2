@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'mytheme.dart';
-import 'home.dart';
+import 'UI/mytheme.dart';
+import 'UI/home.dart';
 
 void main() {
   runApp(MyTD2App());
