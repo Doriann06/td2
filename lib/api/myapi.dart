@@ -1,22 +1,30 @@
-import 'package:td2_app/models/task.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import '../models/task.dart';
 
 class MyAPI {
-  // API methods will be defined here
-  Future<List<Task>> getTask() async {
+  /* Pour écran n°2 basé sur la lecture du fichier JSON local**/
+  Future<List<Task>> getTasks() async {
+    // on attend une seconde
     await Future.delayed(const Duration(seconds: 1));
-    final dataString = await _loadAsset('assets/json/tasks.json');
-    final Map<String, dynamic> json = jsonDecode(dataString);
-    if (json['tasks'] != null) {
+    // on attend le chargement de tasks.json
+    final dataString = await _loadAsset('assets/tasks.json');
+    // on decode un fichier json
+    final json = jsonDecode(dataString);
+    // json["tasks"] contient la liste des tasks trouvée dans le fichier
+    if (json.isNotEmpty) {
       final tasks = <Task>[];
-      json['tasks'].forEach((element) {
-        tasks.add(element);
+      // on boucle sur les tâches
+      json["tasks"].forEach((element) {
+        tasks.add(Task.fromJson(element));
       });
       return tasks;
     } else {
       return [];
     }
   }
-    Future<String> _loadAsset(String path) async {
-        return await rootBundle.loadString(path);
-    }
+
+  Future<String> _loadAsset(String path) async {
+    return rootBundle.loadString(path);
+  }
 }
