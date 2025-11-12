@@ -3,7 +3,7 @@ import 'package:td2_app/UI/card4.dart';
 import 'card1.dart';
 import 'card2.dart';
 import 'card3.dart';
-
+import 'AddTask.dart';
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -41,6 +41,14 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(icon: Icon(Icons.article), label: 'Card4'),
         ],
       ),
+      floatingActionButton:_selectedIndex==0?FloatingActionButton(
+          onPressed: (){
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) => AddTask(),
+            )
+            );
+          },
+          child: const Icon(Icons.add),):const SizedBox.shrink(),
     );
   }
 }

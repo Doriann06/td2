@@ -53,5 +53,18 @@ static Task fromJson(Map<String, dynamic> json) {
           : Colors.greenAccent,
     );
   }
-
+  factory Task.newTasks(){
+    int nb;
+    nb=0;
+    nb++;
+    return Task(
+      id: nb,
+      title: "title $nb",
+      tags: ['tags $nb'],
+      nbhours: nb,
+      difficulty: nb,
+      description: "description $nb",
+      color: Colors.lightBlue,
+    );
+  }
 }
